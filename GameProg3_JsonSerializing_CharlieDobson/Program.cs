@@ -11,17 +11,32 @@ namespace GameProg3_JsonSerializing_CharlieDobson
     {
         static void Main(string[] args)
         {
-            int myInt = 5;
-            string jsonString = JsonSerializer.Serialize(myInt);
+            // Test for Serializing and Unserializing
+            //int myInt = 5;
+            //string jsonString = JsonSerializer.Serialize(myInt);
 
+            //Console.WriteLine(jsonString);
+
+            //string jsonString1 = "5";
+            //string jsonString2 = "2";
+
+            //var myNumber = JsonSerializer.Deserialize<int>(jsonString1);
+            //Console.WriteLine(myNumber);
+
+            Stats playerStats = new Stats();
+            playerStats.health = 5;
+            playerStats.score = 100;
+
+            string jsonString = JsonSerializer.Serialize(playerStats);
+
+            Console.WriteLine("Player Stats: Serialize\n");
             Console.WriteLine(jsonString);
+            Console.ReadKey(true);
 
-            string jsonString1 = "5";
-            string jsonString2 = "2";
+            System.IO.File.WriteAllText("playerStats.json", jsonString);
 
-            var myNumber = JsonSerializer.Deserialize<int>(jsonString1);
-            Console.WriteLine(myNumber);
-            
+            Stats newPlayerStats = JsonSerializer.Deserialize<Stats>(jsonString);
+
         }
     }
 }
